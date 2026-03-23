@@ -14,20 +14,22 @@ body {
 
 /* HEADER */
 .header {
-  padding: 20px;
+  padding: clamp(10px, 4vw, 30px);
 }
 
 h1 {
   color: #b8860b;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
 p {
   color: #6b4f00;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
 }
 
 /* BOTÓN */
 button {
-  padding: 12px 25px;
+  padding: clamp(8px, 2vw, 14px) clamp(15px, 4vw, 25px);
   border: none;
   border-radius: 25px;
   background: linear-gradient(45deg, #ffb300, #ff9800);
@@ -36,22 +38,18 @@ button {
   margin-top: 10px;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: 0.3s;
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
+/* CONTENEDOR */
 #ramo {
   position: relative;
   width: 100%;
   max-width: 350px;
-  height: 450px;
+  height: clamp(300px, 60vh, 450px);
   margin: auto;
 }
 
-/* contenedor de cada flor */
+/* GIRASOL */
 .girasol-container {
   position: absolute;
   bottom: 0;
@@ -62,34 +60,25 @@ button:hover {
   align-items: center;
 }
 
-/* tallo */
+/* TALLO */
 .tallo {
-  width: 5px;
-  height: 140px;
+  width: clamp(3px, 1vw, 6px);
+  height: clamp(80px, 20vw, 140px);
   background: linear-gradient(to top, #14532d, #16a34a);
   border-radius: 10px;
 }
 
-/* hojas */
-.hoja {
-  width: 20px;
-  height: 10px;
-  background: #16a34a;
-  border-radius: 50%;
-  position: absolute;
-}
-
-/* flor */
+/* FLOR */
 .flor {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: clamp(50px, 12vw, 90px);
+  height: clamp(50px, 12vw, 90px);
 }
 
-/* pétalos */
+/* PÉTALOS */
 .petalo {
-  width: 22px;
-  height: 50px;
+  width: clamp(12px, 3vw, 24px);
+  height: clamp(25px, 6vw, 50px);
   background: linear-gradient(to top, #fde047, #facc15);
   border-radius: 50%;
   position: absolute;
@@ -98,10 +87,10 @@ button:hover {
   transform-origin: center bottom;
 }
 
-/* centro */
+/* CENTRO */
 .centro {
-  width: 30px;
-  height: 30px;
+  width: 40%;
+  height: 40%;
   background: radial-gradient(circle, #5c3d00, #3e2600);
   border-radius: 50%;
   position: absolute;
@@ -110,25 +99,26 @@ button:hover {
   transform: translate(-50%, -50%);
 }
 
-/* 🌿 HOJAS GRANDES */
+/* 🌿 HOJAS */
 .hoja-grande {
   position: absolute;
-  bottom: 20px;
-  width: 120px;
-  height: 80px;
-  background: radial-gradient(circle at 30% 30%, #22c55e, #166534);
-  border-radius: 60% 40% 60% 40%;
+  width: clamp(40px, 10vw, 70px);
+  height: clamp(20px, 5vw, 40px);
+  background: linear-gradient(135deg, #22c55e, #166534);
+  border-radius: 50% 0 50% 0;
   z-index: 1;
 }
 
 .hoja-izq {
-  left: 20%;
-  transform: rotate(-25deg);
+  bottom: 30px;
+  left: calc(50% - 50px);
+  transform: rotate(-35deg);
 }
 
 .hoja-der {
-  right: 20%;
-  transform: rotate(25deg);
+  bottom: 30px;
+  left: calc(50% + 10px);
+  transform: rotate(35deg);
 }
 
 /* 🎀 ENVOLTURA */
@@ -137,38 +127,25 @@ button:hover {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 220px;
-  height: 160px;
+  width: clamp(140px, 40vw, 220px);
+  height: clamp(100px, 25vw, 160px);
   background: linear-gradient(135deg, #fda4af, #fb7185);
   clip-path: polygon(50% 100%, 0 0, 100% 0);
-  z-index: 0;
   border-radius: 10px;
+  z-index: 0;
 }
 
 /* ✨ BRILLOS */
 .brillo {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #fff;
+  width: clamp(3px, 1vw, 6px);
+  height: clamp(3px, 1vw, 6px);
+  background: white;
   border-radius: 50%;
-  opacity: 0.8;
-  animation: parpadeo 2s infinite ease-in-out;
+  animation: parpadeo 2s infinite;
 }
 
 @keyframes parpadeo {
-  0%, 100% { opacity: 0.2; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.4); }
-}
-
-/* ANIMACIÓN */
-@keyframes subir {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0%,100% { opacity: 0.2; }
+  50% { opacity: 1; }
 }
