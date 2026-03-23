@@ -4,22 +4,19 @@ const ramo = document.getElementById("ramo");
 btn.addEventListener("click", () => {
   ramo.innerHTML = "";
 
-  // 🌻 RAMO TIPO TRIÁNGULO (como imagen)
+  crearEnvoltura();
+  crearHojas();
+  crearBrillos();
+
+  // 🌻 RAMO TIPO TRIÁNGULO (Posiciones más compactas para móviles)
   const posiciones = [
-    // 🔝 arriba
-    { x: 0, y: 140, rot: 0 },
-
-    // 🌼 medio
-    { x: -50, y: 110, rot: -6 },
-    { x: 50, y: 110, rot: 6 },
-
-    // 🌻 base media
-    { x: -90, y: 80, rot: -8 },
-    { x: 0, y: 80, rot: 0 },
-    { x: 90, y: 80, rot: 8 },
-
-    // 🌿 abajo
-    { x: 0, y: 50, rot: 0 }
+    { x: 0, y: 110, rot: 0 },
+    { x: -40, y: 90, rot: -6 },
+    { x: 40, y: 90, rot: 6 },
+    { x: -60, y: 65, rot: -8 },
+    { x: 0, y: 65, rot: 0 },
+    { x: 60, y: 65, rot: 8 },
+    { x: 0, y: 40, rot: 0 }
   ];
 
   posiciones.forEach((pos, i) => {
@@ -67,30 +64,6 @@ function crearGirasol(pos) {
 
   ramo.appendChild(contenedor);
 }
-
-btn.addEventListener("click", () => {
-  ramo.innerHTML = "";
-
-  crearEnvoltura();
-  crearHojas();
-  crearBrillos();
-
-  const posiciones = [
-    { x: 0, y: 140, rot: 0 },
-    { x: -50, y: 110, rot: -6 },
-    { x: 50, y: 110, rot: 6 },
-    { x: -70, y: 80, rot: -8 },
-    { x: 0, y: 80, rot: 0 },
-    { x: 70, y: 80, rot: 8 },
-    { x: 0, y: 50, rot: 0 }
-  ];
-
-  posiciones.forEach((pos, i) => {
-    setTimeout(() => {
-      crearGirasol(pos);
-    }, i * 120);
-  });
-});
 
 function crearEnvoltura() {
   const envoltura = document.createElement("div");

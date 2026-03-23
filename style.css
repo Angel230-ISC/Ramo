@@ -4,49 +4,63 @@
 
 body {
   margin: 0;
+  padding: 10px;
   font-family: "Segoe UI", sans-serif;
   background: linear-gradient(to top, #fff8dc, #fde68a);
   text-align: center;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  justify-content: flex-start;
 }
 
 /* HEADER */
 .header {
-  padding: clamp(10px, 4vw, 30px);
+  padding: clamp(15px, 5vh, 40px) 10px;
+  flex-shrink: 0;
 }
 
 h1 {
   color: #b8860b;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(1.8rem, 8vw, 2.5rem);
+  margin-bottom: 10px;
 }
 
 p {
   color: #6b4f00;
-  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  line-height: 1.4;
 }
 
 /* BOTÓN */
 button {
-  padding: clamp(8px, 2vw, 14px) clamp(15px, 4vw, 25px);
+  padding: 12px 30px;
+  font-size: 1.1rem;
   border: none;
-  border-radius: 25px;
+  border-radius: 50px;
   background: linear-gradient(45deg, #ffb300, #ff9800);
   color: white;
   cursor: pointer;
-  margin-top: 10px;
   font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  margin-top: 10px;
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 /* CONTENEDOR */
 #ramo {
   position: relative;
   width: 100%;
-  max-width: 350px;
-  height: clamp(300px, 60vh, 450px);
-  margin: auto;
+  max-width: 400px;
+  height: clamp(350px, 50vh, 500px);
+  margin: 0 auto;
+  flex-grow: 1;
 }
 
 /* GIRASOL */
@@ -148,4 +162,14 @@ button {
 @keyframes parpadeo {
   0%,100% { opacity: 0.2; }
   50% { opacity: 1; }
+}
+
+/* Media Query para ajustes en móviles pequeños */
+@media (max-width: 400px) {
+  .header {
+    padding-top: 20px;
+  }
+  #ramo {
+    height: 380px;
+  }
 }
