@@ -8,21 +8,21 @@ btn.addEventListener("click", () => {
   crearHojas();
   crearBrillos();
 
-  // 🌻 RAMO TIPO TRIÁNGULO (Posiciones más compactas para móviles)
+  // 🌻 POSICIONES COMPACTAS (Valores x e y reducidos para que no se separen)
   const posiciones = [
-    { x: 0, y: 110, rot: 0 },
-    { x: -40, y: 90, rot: -6 },
-    { x: 40, y: 90, rot: 6 },
-    { x: -60, y: 65, rot: -8 },
-    { x: 0, y: 65, rot: 0 },
-    { x: 60, y: 65, rot: 8 },
-    { x: 0, y: 40, rot: 0 }
+    { x: 0,   y: 110, rot: 0 },   // Flor central arriba
+    { x: -30, y: 95,  rot: -10 }, // Izquierda arriba
+    { x: 30,  y: 95,  rot: 10 },  // Derecha arriba
+    { x: -45, y: 75,  rot: -15 }, // Izquierda medio
+    { x: 0,   y: 75,  rot: 0 },   // Centro medio
+    { x: 45,  y: 75,  rot: 15 },  // Derecha medio
+    { x: 0,   y: 50,  rot: 0 }    // Base
   ];
 
   posiciones.forEach((pos, i) => {
     setTimeout(() => {
       crearGirasol(pos);
-    }, i * 120);
+    }, i * 100); // Un poco más rápido para que el efecto sea fluido
   });
 });
 
@@ -31,15 +31,13 @@ function crearGirasol(pos) {
   const contenedor = document.createElement("div");
   contenedor.classList.add("girasol-container");
 
-  // 📍 centrado tipo ramo
+  // Usamos los valores ajustados
   contenedor.style.left = `calc(50% + ${pos.x}px)`;
   contenedor.style.bottom = `${pos.y}px`;
 
-  // 🎯 rotación suave (natural)
-  const variacion = (Math.random() - 0.5) * 4;
+  const variacion = (Math.random() - 0.5) * 5;
   contenedor.style.transform = `translateX(-50%) rotate(${pos.rot + variacion}deg)`;
 
-  // 🌼 FLOR
   const flor = document.createElement("div");
   flor.classList.add("flor");
 
@@ -53,10 +51,10 @@ function crearGirasol(pos) {
   const centro = document.createElement("div");
   centro.classList.add("centro");
 
-  // 🌿 TALLO (ligera variación de altura)
+  // Tallo más corto para que no sobresalga por abajo del ramo
   const tallo = document.createElement("div");
   tallo.classList.add("tallo");
-  tallo.style.height = `${120 + Math.random() * 30}px`;
+  tallo.style.height = `${90 + Math.random() * 20}px`; 
 
   flor.appendChild(centro);
   contenedor.appendChild(flor);
@@ -74,27 +72,19 @@ function crearEnvoltura() {
 function crearHojas() {
   const hojaIzq = document.createElement("div");
   hojaIzq.classList.add("hoja-grande", "hoja-izq");
-
   const hojaDer = document.createElement("div");
   hojaDer.classList.add("hoja-grande", "hoja-der");
-
-  // ligera variación para que no se vea rígido
-  hojaIzq.style.transform += ` rotate(${(Math.random() - 0.5) * 10}deg)`;
-  hojaDer.style.transform += ` rotate(${(Math.random() - 0.5) * 10}deg)`;
-
   ramo.appendChild(hojaIzq);
   ramo.appendChild(hojaDer);
 }
 
 function crearBrillos() {
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 20; i++) {
     const brillo = document.createElement("div");
     brillo.classList.add("brillo");
-
     brillo.style.left = Math.random() * 100 + "%";
     brillo.style.top = Math.random() * 100 + "%";
     brillo.style.animationDelay = Math.random() * 2 + "s";
-
     ramo.appendChild(brillo);
   }
 }
