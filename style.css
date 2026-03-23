@@ -11,17 +11,16 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  justify-content: center; /* Centra todo verticalmente en la pantalla */
-  align-items: center;     /* Centra todo horizontalmente */
-  gap: 3vh;                /* Agrega una separación automática entre el texto y el ramo */
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center;
+  overflow-x: hidden;
 }
-
-
 
 /* HEADER */
 .header {
-  padding: clamp(15px, 5vh, 40px) 10px;
+  padding: 20px 10px;
   flex-shrink: 0;
+  z-index: 20;
 }
 
 h1 {
@@ -32,9 +31,9 @@ h1 {
 
 p {
   color: #6b4f00;
-  font-size: clamp(1rem, 4vw, 1.2rem);
-  max-width: 500px;
-  margin: 0 auto 20px auto;
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  max-width: 450px;
+  margin: 0 auto 15px auto;
   line-height: 1.4;
 }
 
@@ -50,39 +49,40 @@ button {
   font-weight: bold;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: transform 0.2s;
-  margin-top: 10px;
 }
 
 button:active {
   transform: scale(0.95);
 }
 
-
-
-/* CONTENEDOR */
+/* CONTENEDOR DEL RAMO */
 #ramo {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  height: 380px; /* Le damos una altura fija para que no se hunda */
-  /* Eliminamos flex-grow y margins raros */
+  max-width: 320px; /* Limitamos el ancho para que las flores no se separen */
+  height: 400px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 /* GIRASOL */
 .girasol-container {
   position: absolute;
-  bottom: 0;
+  bottom: 40px; /* Subimos la base de las flores un poco */
   left: 50%;
   transform-origin: bottom center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 5; /* Detrás de la envoltura */
 }
 
 /* TALLO */
 .tallo {
-  width: clamp(3px, 1vw, 6px);
-  height: clamp(80px, 20vw, 140px);
+  width: 4px;
+  height: 80px;
   background: linear-gradient(to top, #14532d, #16a34a);
   border-radius: 10px;
 }
@@ -90,14 +90,14 @@ button:active {
 /* FLOR */
 .flor {
   position: relative;
-  width: clamp(50px, 12vw, 90px);
-  height: clamp(50px, 12vw, 90px);
+  width: 70px; /* Tamaño fijo para consistencia */
+  height: 70px;
 }
 
 /* PÉTALOS */
 .petalo {
-  width: clamp(12px, 3vw, 24px);
-  height: clamp(25px, 6vw, 50px);
+  width: 18px;
+  height: 35px;
   background: linear-gradient(to top, #fde047, #facc15);
   border-radius: 50%;
   position: absolute;
@@ -116,65 +116,68 @@ button:active {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
-/* 🌿 HOJAS */
+/* 🌿 HOJAS BASE */
 .hoja-grande {
   position: absolute;
-  width: clamp(40px, 10vw, 70px);
-  height: clamp(20px, 5vw, 40px);
+  width: 60px;
+  height: 30px;
   background: linear-gradient(135deg, #22c55e, #166534);
   border-radius: 50% 0 50% 0;
-  z-index: 1;
+  bottom: 10px;
+  z-index: 15; /* Por delante de todo */
 }
 
 .hoja-izq {
-  bottom: 30px;
-  left: calc(50% - 50px);
-  transform: rotate(-35deg);
+  left: calc(50% - 55px);
+  transform: rotate(-20deg);
 }
 
 .hoja-der {
-  bottom: 30px;
-  left: calc(50% + 10px);
-  transform: rotate(35deg);
+  left: calc(50% - 5px);
+  transform: rotate(20deg);
 }
 
-/* 🎀 ENVOLTURA */
+/* 🎀 ENVOLTURA (Papel Rosa) */
 .envoltura {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(140px, 40vw, 220px);
-  height: clamp(100px, 25vw, 160px);
+  width: 180px;
+  height: 185px;
   background: linear-gradient(135deg, #fda4af, #fb7185);
-  clip-path: polygon(50% 100%, 0 0, 100% 0);
-  border-radius: 10px;
-  z-index: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 10; /* Encima de los tallos */
+  border-radius: 0 0 20px 20px;
 }
 
 /* ✨ BRILLOS */
 .brillo {
   position: absolute;
-  width: clamp(3px, 1vw, 6px);
-  height: clamp(3px, 1vw, 6px);
+  width: 4px;
+  height: 4px;
   background: white;
   border-radius: 50%;
   animation: parpadeo 2s infinite;
+  z-index: 1;
 }
 
 @keyframes parpadeo {
-  0%,100% { opacity: 0.2; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* Media Query para ajustes en móviles pequeños */
-@media (max-width: 400px) {
-  .header {
-    padding-top: 20px;
-  }
+/* Ajustes para móviles muy pequeños */
+@media (max-width: 360px) {
   #ramo {
-    height: 380px;
+    height: 350px;
+    max-width: 280px;
+  }
+  .flor {
+    width: 60px;
+    height: 60px;
   }
 }
