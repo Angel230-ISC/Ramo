@@ -11,8 +11,12 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  justify-content: flex-start;
+  justify-content: center; /* Centra todo verticalmente en la pantalla */
+  align-items: center;     /* Centra todo horizontalmente */
+  gap: 3vh;                /* Agrega una separación automática entre el texto y el ramo */
 }
+
+
 
 /* HEADER */
 .header {
@@ -53,14 +57,15 @@ button:active {
   transform: scale(0.95);
 }
 
+
+
 /* CONTENEDOR */
 #ramo {
   position: relative;
   width: 100%;
   max-width: 400px;
-  height: clamp(350px, 50vh, 500px);
-  margin: 0 auto;
-  flex-grow: 1;
+  height: 380px; /* Le damos una altura fija para que no se hunda */
+  /* Eliminamos flex-grow y margins raros */
 }
 
 /* GIRASOL */
